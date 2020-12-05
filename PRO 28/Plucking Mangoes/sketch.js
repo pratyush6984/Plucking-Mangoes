@@ -57,7 +57,7 @@ function draw() {
  // Engine.update(engine)
   textSize(25);
   text("Press Space to get a second Chance to Play!!",50 ,50);
-  image(this.boy,200,340, 200, 300);
+  image(this.image,200,340, 200, 300);
   //Engine.update(engine)
   
 
