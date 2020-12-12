@@ -4,13 +4,13 @@ const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 const Render = Matter.Render;
 const Constraint=Matter.Constraint;
-var tree, stone,ground, launcher;
+var tree, stone1,ground, launcher;
 var mango1,mango2,mango3,mango4,mango5,mango6,mango7,mango8,mango9,mango10,mango11,mango12;
-var world,boy;
+var world;
 var launchingForce=100;
-
+var boy,boy1;
 function preload(){
-	boy=loadImage("images/boy.png");
+	boy1=loadImage("images/boy.png");
   }
 
 function setup() {
@@ -18,7 +18,7 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	stone=new Stone(235,420,30); 
+	stone1=new Stone(235,420,30); 
 
 	mango1=new Mango(1100,100,30);
   mango2=new Mango(1170,130,30);
@@ -35,7 +35,8 @@ function setup() {
 
 	tree=new Tree(1050,580);
 	ground=new Ground(width/2,600,width,20);
-	boy=new Boy(stone.body,{x:235,y:420})
+  launcherObject=new Boy(stone1.body,{x:235,y:420})
+  
   var render = Render.create({
     element: document.body,
     engine: engine,
@@ -57,12 +58,12 @@ function draw() {
  // Engine.update(engine)
   textSize(25);
   text("Press Space to get a second Chance to Play!!",50 ,50);
-  image(boy,200,340, 200, 300);
+  image(boy1 , 200,340, 200, 300);
   //Engine.update(engine)
   
 
   tree.display();
-  stone.display();
+  stone1.display();
   mango1.display();
   mango2.display();
   mango3.display();
@@ -74,39 +75,39 @@ function draw() {
   mango10.display();
   mango11.display();
   mango12.display();
-  stone.display();
 
   ground.display();
-  boy.display();
-  detectollision(stone,mango1);
-  detectollision(stone,mango2);
-  detectollision(stone,mango3);
-  detectollision(stone,mango4);
-  detectollision(stone,mango5);
-  detectollision(stone,mango6);
-  detectollision(stone,mango7);
-  detectollision(stone,mango8);
-  detectollision(stone,mango9);
-  detectollision(stone,mango10);
-  detectollision(stone,mango11);
-  detectollision(stone,mango12);
+  launcherObject.display();
+  detectollision(stone1,mango1);
+  detectollision(stone1,mango2);
+  detectollision(stone1,mango3);
+  detectollision(stone1,mango4);
+  detectollision(stone1,mango5);
+  detectollision(stone1,mango6);
+  detectollision(stone1,mango7);
+  detectollision(stone1,mango8);
+  detectollision(stone1,mango9);
+  detectollision(stone1,mango10);
+  detectollision(stone1,mango11);
+  detectollision(stone1,mango12);
 }
 
 function mouseDragged()
 {
-	Matter.Body.setPosition(stone.body, {x:mouseX, y:mouseY}) 
+	Matter.Body.setPosition(stone1.body, {x:mouseX, y:mouseY}) 
 }
 
 function mouseReleased()
 {
-	stone.fly();
+	launcherObject.fly();
     // distance=int(dist(stoneObj.x,stoneObj.y,mango1.x,mango1.y));
 }
 
 function keyPressed() {
 	if (keyCode === 32) {
-    Matter.Body.setPosition(stone.body, {x:235, y:420}) 
-	  boy.attach(stone.body);
+    Matter.Body.setPosition(stone1.body, {x:235, y:420}) 
+
+	  launcherObject.attach(stone1.body);
 	}
   }
 
@@ -114,7 +115,7 @@ function keyPressed() {
   mangoBodyPosition=lmango.body.position
   stoneBodyPosition=lstone.body.position
   
-  var distance=dist(stone.x, stone.y, mango.x, mango.y)
+  var distance=dist( stoneBodyPosition.x, stoneBodyPosition.y,  mangoBodyPosition.x, mangoBodyPosition.y)
   	if(distance<=lmango.r+lstone.r)
     {
       //console.log(distance);
