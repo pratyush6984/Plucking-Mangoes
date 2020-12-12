@@ -14,19 +14,22 @@ class Stone{
 		this.body=Bodies.circle(this.x, this.y, this.r/2, options)
 		World.add(world, this.body);
 
-    }
+	}
+	fly(){
+		this.body = null;
+	}
 
     display()
     {
-			var stone=this.body.position;		
-			push()
-			translate(stone.x, stone.y);
+			var stonePos=this.body.position;		
+			push();
+			translate(stonePos.x, stonePos.y);
 			// rectMode(CENTER)
 			// rotate(this.body.angle)
 			fill(255,0,255)
 			imageMode(CENTER);
 			ellipseMode(RADIUS)
 			image(this.image, 0,0,this.r*2, this.r*2)
-			pop()
+			pop();
     }
 };
