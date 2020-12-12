@@ -15,7 +15,7 @@ class Tree{
 		World.add(world, this.bottomBody)
 		World.add(world, this.leftWallBody)
 		World.add(world, this.rightWallBody);
-    }
+	}
 
 	display()
 	{
@@ -28,4 +28,4 @@ class Tree{
 			pop()
 			
     }
-};
+}
